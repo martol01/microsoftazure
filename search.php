@@ -20,12 +20,6 @@ body { background-color: #fff; border-top: solid 10px #000;
 <p>Choose a field to search by and enter the required value. Then press <strong>Find</strong> button to see the results of your query.</p>
 
 <form method="post" action="search.php">
-<select name="category">
-<option value="name">Name</option>
-<option value="email">Email</option>
-<option value="company_name">Company Name</option>
-<option value="date">Date</option>
-</select>
 Search criteria: <input type="text" name="criteria"/>
       <input type="submit" value="Search"/>       
 </form>
@@ -45,13 +39,12 @@ Search criteria: <input type="text" name="criteria"/>
     catch(Exception $e){
         die(var_dump($e));
     }
-    $category=$_POST['category'];
+   
     $criteria=$_POST['criteria'];
     $sql_select = "SELECT * FROM registration_tbl WHERE name LIKE CONCAT  ('%',?,'%')"; 
 
     $stmt = $conn->prepare($sql_select);
-        $stmt->bindValue(1, $category);
-        $stmt->bindValue(2, $criteria);
+        $stmt->bindValue(1, $criteria);
         $stmt->execute();
 
     //$stmt = $conn->query($sql_select);
