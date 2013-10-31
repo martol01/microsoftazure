@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Search</title>
+<title>Search Database</title>
 <style type="text/css">
 body { background-color: #fff; border-top: solid 10px #000;
         color: #333; font-size: .85em; margin: 20; padding: 20;
@@ -49,7 +49,11 @@ Search criteria: <input type="text" name="criteria"/>
     $criteria=$_POST['criteria'];
     $sql_select = "SELECT * FROM registration_tbl WHERE $category LIKE '%".$criteria."%'"; 
 
-    $stmt = $conn->query($sql_select);
+    $stmt = $conn->prepare($sql_select);
+        $stmt->bindValue(1, $category);
+        $stmt->execute();
+
+    //$stmt = $conn->query($sql_select);
 
 
     $registrants = $stmt->fetchAll(); 
