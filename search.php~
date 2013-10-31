@@ -47,8 +47,6 @@ Search criteria: <input type="text" name="criteria"/>
     }
     $category=$_POST['category'];
     $criteria=$_POST['criteria'];
-   
-    // $sql_select = "SELECT * FROM registration_tbl WHERE $category='$criteria'";
     $sql_select = "SELECT * FROM registration_tbl WHERE $category LIKE '%".$criteria."%'"; 
 
     $stmt = $conn->query($sql_select);
