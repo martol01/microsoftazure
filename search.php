@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Search Database</title>
+<title>Search</title>
 <style type="text/css">
 body { background-color: #fff; border-top: solid 10px #000;
         color: #333; font-size: .85em; margin: 20; padding: 20;
@@ -47,7 +47,7 @@ Search criteria: <input type="text" name="criteria"/>
     }
     $category=$_POST['category'];
     $criteria=$_POST['criteria'];
-    $sql_select = "SELECT * FROM registration_tbl WHERE ? LIKE CONCAT ('%',?,'%')"; 
+    $sql_select = "SELECT * FROM registration_tbl WHERE name LIKE CONCAT ('%',?,'%')"; 
 
     $stmt = $conn->prepare($sql_select);
         $stmt->bindValue(1, $category);
