@@ -47,10 +47,11 @@ Search criteria: <input type="text" name="criteria"/>
     }
     $category=$_POST['category'];
     $criteria=$_POST['criteria'];
-    $sql_select = "SELECT * FROM registration_tbl WHERE $category LIKE '%".$criteria."%'"; 
+    $sql_select = "SELECT * FROM registration_tbl WHERE ? LIKE CONCAT ('%',?,'%')"; 
 
     $stmt = $conn->prepare($sql_select);
         $stmt->bindValue(1, $category);
+        $stmt->bindValue(2, $criteria);
         $stmt->execute();
 
     //$stmt = $conn->query($sql_select);
