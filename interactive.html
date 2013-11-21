@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title> Systems Page 2
+</title>
+<link rel="stylesheet" type="text/css" href="interactivePage.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+var canvas,canvas2,context,context2,sprite,x,y,angle,xOffset,yOffset, goForward;
+function init()
+{
+	canvas=document.getElementById('turtleCanvas');
+	canvas2=document.getElementById('trailCanvas');
+	context=canvas.getContext('2d');
+	context2=canvas2.getContext('2d');
+	backgroundColorCanvas2();
+	sprite=document.getElementById('sprite');
+	x=canvas.width/2;
+	y=canvas.height/2;
+	xOffset = sprite.width / -2;
+	yOffset = sprite.height / -2;
+	angle=Math.PI/2;
+	drawImage();
+}
+function backgroundColorCanvas2()
+{
+	context2.fillStyle="#FFCC00";
+	context2.fillRect(0,0,canvas2.width,canvas2.height);
+}
+function drawPath()
+{    
+	context2.lineWidth = 5;
+	context2.lineCap = 'round';
+	context2.lineJoin = 'round';
+    context2.strokeStyle = 'blue';
+    context2.lineTo(x,y);
+    context2.stroke();
+}
+
+function stayInBoundaries()
+{
+	if(x>canvas.width-20)
+	  x=canvas.width-20;
+	if(x<20)
+		x=20;
+	if(y<20)
+		y=20;
+	if(y>canvas.height-20)
+		y=canvas.height-20;
+}
+function moveImage()
+{
+	if(goForward)
+	{
+	  x+=Math.sin(angle)*10;
+	  y-=Math.cos(angle)*10;
+	}
+	else
+	{
+		x-=Math.sin(angle)*10;
+		y+=Math.cos(angle)*10;
+	}
+	drawPath();
+	 
+	
+}
+function drawImage()
+{   context.clearRect(0,0,context2.canvas.width,context2.canvas.height);
+	context.save();
+	//crossBoundaries();
+	stayInBoundaries();
+	context.translate(x, y);
+	context.rotate(angle);
+	context.drawImage(sprite, xOffset, yOffset);
+	context.restore();
+
+}
+function resetTurtle()
+{  
+   context2.clearRect(0,0,canvas2.width,canvas2.height);
+   context2.beginPath();
+   backgroundColorCanvas2();
+   x=canvas.width/2;
+   y=canvas.height/2;
+   angle=Math.PI/2;
+   drawImage();
+
+}
+$(document).keydown(function(event) {
+                switch (event.keyCode) {
+                    case 37: angle-=Math.PI/4; drawImage();break;//left arrow
+                    case 38: goForward=true; moveImage();drawImage();break;//up arrow
+                    case 39: angle+=Math.PI/4; x+=Math.sin(angle)*10;drawImage();break;//right arrow
+                    case 40: goForward=false; moveImage();drawImage();break;//down arrow
+                }
+            });
+</script>
+</head>
+
+<body onload="init()">
+	<h1 class="center">Interactive Page</h1>
+<canvas id="turtleCanvas" width="1000" height="450" style="border:1px solid #000000;" >
+</canvas>
+<canvas id="trailCanvas"  width="1000" height="450" style="border:1px solid #000000"></canvas>
+<img id="sprite" src="turtle.png" style="display:none"/>
+<button class="right" id="myButton" onclick="resetTurtle()">Reset Turtle</button>
+<section> 
+<address>
+<footer>
+<p>Created by Martin Lazarov<br/>
+The site was last revisitted on <time dateTime="2013-11-18">November 18, 2013</p>
+</footer>
+</address>
+</section>
+</body>
+</html>

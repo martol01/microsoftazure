@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title> Systems Page 1
+</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="github.commits.widget.js"></script>
+<link rel="stylesheet" type="text/css" href="firstPage.css"/>
+</head>
+<body>
+<article>
+<h1 class="center">COMP 2013 Health Passport Project from Martin Lazarov</h1>
+<section class="wrapper" class="spaceout">
+    <aside class="first" class="spaceout"><b>Team:</b> Martin, Raluca, Nicola </aside>
+    <div class="second">
+        <button onclick="nextPage()">Next Page</button>
+    </div>
+<section>
+<section>
+<h2>Information about myself</h2>
+<p>My name is Martin Lazarov. I am nineteen years old and I am from Bulgaria. Currently, I am in my second year of studies of MEng Computer Science.
+My interests outside of Computer Science are sports, films and music. My favourite sport is football. Every week I play and watch football with my friends.
+From time to time I attend some music concerts and often I go to the cinema to watch some new and exciting movies.
+</section>
+<section>
+<h2>Description of the project</h2>
+<p>This is a project which is designed to create a device that will help people with dementia or learning disabilities
+in their every day life allowing them to store information about things they like and dislike and providing a framework which will provide all of the information
+to the doctors or other people interested in it.
+</section>
+</article>
+<section class="wrapper">
+<div class="first">
+<iframe width="500" height="384" src="http://martol0.wordpress.com" frameborder="0" allowfullscreen></iframe>
+</div>
+<div id="github-commits" class="second"></div>
+</section>
+ <script>
+        $(function() {
+                $('#github-commits').githubInfoWidget(
+                        { user: 'martol01', repo: 'microsoftazure', branch: 'master', last: 15, limitMessageTo: 30 });
+        });
+        function nextPage()
+        {
+        	window.location.href="interactive.html"
+        }
+  </script> 
+
+<section id="footer"> 
+<address>
+<footer>
+<p>Created by Martin Lazarov<br/>
+The site was last revisitted on <time dateTime="2013-11-14">November 14, 2013</p>
+</footer>
+</address>
+</section>
+  </body>
+</html>
